@@ -5,14 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Add a new Gig</h2>
+<h2 class="addGig">Add a new Gig</h2>
 
 
 @using (Html.BeginForm("Create", "Gigs"))
 
 {
     @Html.AntiForgeryToken()
-    <div class="form-group">
+    <div class="form-group createGig addGig">
         @Html.LabelFor(m => m.Venue)
         @Html.TextBoxFor(m => m.Venue, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Venue)
@@ -33,9 +33,10 @@
         @Html.DropDownListFor(m => m.Genre, new SelectList(Model.Genres, "Id", "Name"), "", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Genre)
     </div>
-    <button type="submit" value="save" class="btn btn-primary">
-        Save
-    </button>
+    <div class="form-group">
+        <button type="submit" value="save" class="btn btn-primary btnSave">Save</button>
+    </div>
+    
 }
 
 @section scripts{
