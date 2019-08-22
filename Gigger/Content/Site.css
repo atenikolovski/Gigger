@@ -89,3 +89,51 @@ span.field-validation-error {
     font-size: 15px;
     font-weight: bold;
 }
+
+.showGigs > li{
+    position:relative;
+    margin-bottom: 30px;
+}
+
+    .showGigs > li > .details {
+        position: absolute;
+        top: 0px;
+        left: 70px;
+        padding-left: 10px;
+        margin-top: 5px;
+    }
+
+.showGigs > li > .details .artist{
+    font-weight: bold;
+    display:block;
+}
+    .showGigs > li > .details .genre{
+        font-size:15px;
+    }
+
+    .showGigs {
+        list-style: none;
+    }
+
+.showGigs > li .date {
+     background: #333333d4;
+     color: white;
+     text-align: center;
+     width: 60px;
+     border-radius: 8px;
+
+}
+
+.showGigs >li .date .month{
+    font-weight: bold;
+    text-transform:uppercase;
+    padding:3px 7px;
+    font-size:15px;
+}
+
+    .showGigs > li .date .day {
+        background: #fff9f9;
+        color: #333333d4;
+        font-size: 20px;
+        padding: 7px 13px;
+    }
