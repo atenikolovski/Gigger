@@ -137,3 +137,9 @@ span.field-validation-error {
         font-size: 20px;
         padding: 7px 13px;
     }
+
+.details button {
+    position: absolute;
+    left: 70px;
+    bottom: 0;
+}
