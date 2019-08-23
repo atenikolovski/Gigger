@@ -1,5 +1,4 @@
-﻿
-@model IEnumerable<Gigger.Models.Gig>
+﻿@model Gigger.ViewModels.HomeViewModel
 
 @{
     ViewBag.Title = "Home Page";
@@ -7,27 +6,46 @@
 
 
 <ul class="showGigs">
-    @foreach (var gig in Model)
+    @foreach (var gig in Model.UpcomingGigs)
     {
-        <li>
-            <div class="date">
-                <div class="month">
-                    @gig.DateTime.ToString("MMM")
-                </div>
-                <div class="day">
-                    @gig.DateTime.ToString("d ")
-                </div>
+    <li>
+        <div class="date">
+            <div class="month">
+                @gig.DateTime.ToString("MMM")
             </div>
-            <div class="details">
-                <span class="artist">
-                    @gig.Artist.Name
-                </span>
-                <span class="genre">
-                    @gig.Genre.Name
-                </span>
-                <button data-gig-id="@gig.Id" class="btn btn-default btn-sm js-toggle-attendance">Going ?</button>
+            <div class="day">
+                @gig.DateTime.ToString("d ")
             </div>
-        </li>
+            <div class="year">
+                @gig.DateTime.ToString("yyyy")
+            </div>
+        </div>
+        <div class="details">
+            <span class="artist">
+                @gig.Artist.Name
+            </span>
+            <span class="genre">
+                @gig.Genre.Name
+            </span>
+
+
+
+            @if (Model.ShowActions)
+            {
+                if (Model.gigsLoggedUser.Contains(gig))
+                {
+                    <button disabled class="btn btn-sm btn-info btnDisabled">Going</button>
+                }
+                else
+                {
+                    <button data-gig-id="@gig.Id" class="btn btn-default btn-sm js-toggle-attendance">Going ?</button>
+                }
+            }
+
+        </div>
+
+        
+    </li>
     }
 </ul>
 

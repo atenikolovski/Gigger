@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using System.Security.Principal;
 using Microsoft.AspNet.Identity;
 using System;
+using System.Data.Entity;
 
 namespace Gigger.Controllers
 {
@@ -53,6 +54,27 @@ namespace Gigger.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [Authorize]
+        public ActionResult Attending()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var gigs = _context.Attendances
+                .Where(a => a.AttendeeId == userId)
+                .Select(a => a.Gig)
+                .Include(g => g.Artist)
+                .Include(g => g.Genre)
+                .ToList();
+
+            var viewModel = new HomeViewModel()
+            {
+                UpcomingGigs = gigs,
+                ShowActions = User.Identity.IsAuthenticated
+            };
+
+            return View(viewModel);
         }
     }
 }
